@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
   <a class="navbar-brand" href="#">
-    <div class="menu-icon">
+    <div class="menu-icon" (click)="activeBar()">
 
       <i class="fas fa-bars"></i>
     </div>
@@ -24,7 +24,7 @@
   <div class="col-md-3">
 
 
-    <ul class="categories">
+    <ul *ngIf="activateList" class="categories">
       <li><button (click)="selectCategory('all')">Toate categoriile</button></li>
       <li><button (click)="selectCategory('fruits')">Fructe</button></li>
       <li><button (click)="selectCategory('veg')">Legume</button></li>
@@ -35,10 +35,10 @@
 
 
   </div>
-  <div class="col-md-8 offset-md-1">
-    <div class="row no-margin-top">
+  <div class="col-md-8 offset-md-1 scroll">
+    <div class="row no-margin-top scr">
       <ng-template ngFor let-product [ngForOf]="products">
-        <div class="col-md-6 items" *ngIf="product.productType === activeCategory || activeCategory === 'all' ">
+        <div class="col-md-6 items " *ngIf="product.productType === activeCategory || activeCategory === 'all' ">
           <div class="imgs">
             <img [src]="product.image">
             <h3>{{product.title}}</h3>

@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
 	public cartProducts:ProductInterface[];
 	public upNumber:number;
 	public priceOfCart:number;
+	public activateList:boolean;
 
 	public ngOnInit(): void {
 		this.products = [
@@ -178,6 +179,7 @@ export class AppComponent implements OnInit {
 		this.activeCategory = ProductsType.ALL;
 		this.upNumber = 0;
 		this.priceOfCart = 0;
+		this.activateList= true;
 	}
 
 	public selectCategory(category:string): void {
@@ -235,5 +237,8 @@ export class AppComponent implements OnInit {
 
 	}
 	
+	public activeBar(): void {
+		this.activateList = !this.activateList;
+	}
 
 }
