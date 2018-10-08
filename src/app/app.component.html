@@ -1,0 +1,127 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+  <a class="navbar-brand" href="#">
+    <div class="menu-icon">
+
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="cart-icon" data-toggle="modal" data-target="#shopModal">
+
+      <i class="fas fa-shopping-cart cart">
+        <div *ngIf="upNumber > 0" class="number-of-items">
+
+          <p>{{upNumber}}</p>
+        </div>
+      </i>
+    </div>
+  </a>
+
+
+
+</nav>
+<div class="row" style="width: 100%">
+  <div class="col-md-3">
+
+
+    <ul class="categories">
+      <li><button (click)="selectCategory('all')">Toate categoriile</button></li>
+      <li><button (click)="selectCategory('fruits')">Fructe</button></li>
+      <li><button (click)="selectCategory('veg')">Legume</button></li>
+      <li><button (click)="selectCategory('snacks')">Cipsuri</button></li>
+      <li><button (click)="selectCategory('juices')">Sucuri</button></li>
+      <li><button (click)="selectCategory('sweets')">Dulciuri</button></li>
+    </ul>
+
+
+  </div>
+  <div class="col-md-8 offset-md-1">
+    <div class="row no-margin-top">
+      <ng-template ngFor let-product [ngForOf]="products">
+        <div class="col-md-6 items" *ngIf="product.productType === activeCategory || activeCategory === 'all' ">
+          <div class="imgs">
+            <img [src]="product.image">
+            <h3>{{product.title}}</h3>
+            <p>{{product.price}} Lei</p>
+            <button type="button" (click)="addProductToCart(product)">Adauga</button>
+          </div>
+        </div>
+      </ng-template>
+
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <div class="modal fade" id="shopModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info modal-lg " role="document">
+      <div class="modal-content">
+        <div class="modal-header head">
+          <p class="heading lead">Cos</p>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+
+
+        </div>
+        <div class="modal-body np">
+          
+
+            <div *ngFor="let cartProduct of cartProducts; let i = index " class="row shop">
+              <div class="col-md-2 im">
+
+
+                <img [src]="cartProduct.image">
+
+              </div>
+              <div class="col-md-2 den">
+
+                <h3>{{cartProduct.title}}</h3>
+
+              </div>
+              <div class="col-md-2 btn-group">
+
+                  <button (click)="updateNumberOfItems(i,-1)">-</button>
+                  <p>{{cartProduct.numberOfItems}} BUC</p>
+                  <button (click)="updateNumberOfItems(i,1)">+</button>
+
+              </div>
+              <div class="col-md-2 price">
+
+                <p>{{cartProduct.price}}Lei</p>
+
+              </div>
+              <div class="col-md-2 cat">
+
+                <h4>{{cartProduct.productType}}</h4>
+
+              </div>
+              <div class="col-md-2 close">
+
+                  <button (click)="closeProduct(i)"  type="button" class="close" >
+                      <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+
+              </div>
+            </div>
+
+            
+
+          </div>
+          <div class="tot">
+
+            <h3>Pret total:{{priceOfCart}} Lei</h3>
+
+          </div>
+
+        
+
+      </div>
+    </div>
+  </div>
