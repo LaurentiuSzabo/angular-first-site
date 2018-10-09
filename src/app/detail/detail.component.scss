@@ -1,3 +1,30 @@
 .detail {
     color: white;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    
+    .name {
+        padding-left: 40px;
+        padding-top: 30px;
+        font-family: cursive;
+        
+
+    }
+    .row {
+
+        .img {
+            padding-left: 40px;
+            padding-top: 30px;
+           
+        }
+    }
+    .details {
+        padding-left: 40px;
+        padding-top: 30px;
+    }
+    .det {
+        padding-left: 40px;
+        padding-top: 30px;
+    }
 }
